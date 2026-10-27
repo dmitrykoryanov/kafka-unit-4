@@ -1,0 +1,28 @@
+# Текст задания и служебные файлы Claude Code
+TASK.md
+CLAUDE.md
+.claude/
+
+# Скрипты и сырые результаты экспериментов с пропускной способностью из предыдущего задания
+experiments/
+
+# Настройки IDE
+.idea/
+.vscode/
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Служебные файлы ОС
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Скачанные архивы плагинов (в репозитории лежат уже распакованные плагины в confluent-hub-components/)
+*.tar.gz
+*.zip
+
+# Логи
+*.log
