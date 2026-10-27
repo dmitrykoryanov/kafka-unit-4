@@ -1,0 +1,32 @@
+# my global config
+global:
+  scrape_interval:     5s # Scrape targets every 5 seconds (the Prometheus default is 1m).
+  evaluation_interval: 5s # Evaluate rules every 5 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+# - "first_rules.yml"
+# - "second_rules.yml"
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  # Prometheus itself.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Kafka Connect: the JMX Prometheus javaagent in the kafka-connect container serves /metrics on port 9876,
+  # converting JMX MBeans (worker, connectors, tasks, producers, Debezium) by the rules in kafka-connect/kafka-connect.yml.
+  - job_name: 'kafka-connect'
+    static_configs:
+      - targets: ['kafka-connect:9876']
